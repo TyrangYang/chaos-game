@@ -1,0 +1,23 @@
+{
+    "name": "chaosgame",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "deploy": "gh-pages -d ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TyrangYang/chaos-game.git"
+    },
+    "author": "Haolin Yang",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TyrangYang/chaos-game/issues"
+    },
+    "homepage": "https://tyrangyang.github.io/chaos-game",
+    "dependencies": {
+        "gh-pages": "^2.2.0"
+    }
+}
