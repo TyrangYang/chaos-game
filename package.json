@@ -5,6 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rm -rf ./node_modules && rm -rf ./vscode && rm package-lock.json",
+        "predelpoy": "npm run clean",
         "deploy": "gh-pages -d ./"
     },
     "repository": {
