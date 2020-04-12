@@ -14,7 +14,13 @@ body {
     margin: 10;
 }
 
-#canvas {
+#canvas1 {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+#canvas2 {
     background-color: #f0f0f0;
     border-radius: 5px;
 }

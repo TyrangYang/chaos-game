@@ -1,8 +1,11 @@
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
 const canvasCenterX = canvas.width / 2;
 const canvasCenterY = canvas.height / 2;
+
+const WIDTH = canvas.width;
+const HEIGHT = canvas.height;
 
 let drawColorCircle = (centerX, centerY, radius, color) => {
     ctx.beginPath();
@@ -14,7 +17,7 @@ let drawColorCircle = (centerX, centerY, radius, color) => {
 };
 
 let drawPoint = (centerX, centerY, color) => {
-    drawColorCircle(centerX, centerY, 2, color);
+    drawColorCircle(centerX, centerY, 1, color);
 };
 
 // -       -   -   -   -   -
@@ -44,18 +47,46 @@ class IFS_Matrix {
     }
 }
 
-// let m1 = new IFS_Matrix(0.5, 0.0, 0.5, 0.0, 0.0, 0.5);
-// let m2 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.25, 0.0);
-// let m3 = new IFS_Matrix(0.0, 0.5, 0.0, 0.5, 0.0, 0.433);
+let sierpinskiPoint = [0, 0];
+let sierpinskiIFS1 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.0, 0.0);
+let sierpinskiIFS2 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.5, 0.0);
+let sierpinskiIFS3 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.25, 0.433);
 
-let points_X = [0, canvasCenterX * 2, 0];
-let points_Y = [0, 0, canvasCenterY * 2];
-let startPoint = [Math.random() * canvas.width, Math.random() * canvas.height];
+let drawSierpinskiTriangle = () => {
+    setInterval(() => {
+        let randomValue = Math.floor(Math.random() * 3);
+        if (randomValue == 0) {
+            let [nextX, nextY] = sierpinskiIFS1.nextPoint(
+                sierpinskiPoint[0],
+                sierpinskiPoint[1]
+            );
+            sierpinskiPoint[0] = nextX;
+            sierpinskiPoint[1] = nextY;
+        } else if (randomValue == 1) {
+            let [nextX, nextY] = sierpinskiIFS2.nextPoint(
+                sierpinskiPoint[0],
+                sierpinskiPoint[1]
+            );
+            sierpinskiPoint[0] = nextX;
+            sierpinskiPoint[1] = nextY;
+        } else {
+            let [nextX, nextY] = sierpinskiIFS3.nextPoint(
+                sierpinskiPoint[0],
+                sierpinskiPoint[1]
+            );
+            sierpinskiPoint[0] = nextX;
+            sierpinskiPoint[1] = nextY;
+        }
 
-setInterval(() => {
-    let randomValue = Math.floor(Math.random() * 3);
-    startPoint[0] = (startPoint[0] + points_X[randomValue]) / 2;
-    startPoint[1] = (startPoint[1] + points_Y[randomValue]) / 2;
-    // console.log(startPoint[0], startPoint[1]);
-    drawPoint(startPoint[0], startPoint[1], 'red');
-}, 10);
+        drawPoint(
+            sierpinskiPoint[0] * WIDTH,
+            sierpinskiPoint[1] * HEIGHT,
+            'red'
+        );
+    }, 2);
+};
+
+let main = () => {
+    drawSierpinskiTriangle();
+};
+main();
