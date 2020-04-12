@@ -1,9 +1,6 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
-const canvasCenterX = canvas.width / 2;
-const canvasCenterY = canvas.height / 2;
-
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 
@@ -16,8 +13,12 @@ let drawColorCircle = (centerX, centerY, radius, color) => {
     ctx.closePath();
 };
 
-let drawPoint = (centerX, centerY, color) => {
-    drawColorCircle(centerX, centerY, 1, color);
+let drawPoint = (centerX, centerY, color, reverse = false) => {
+    if (reverse) {
+        drawColorCircle(centerX, HEIGHT - centerY, 1, color);
+    } else {
+        drawColorCircle(centerX, centerY, 1, color);
+    }
 };
 
 // -       -   -   -   -   -
@@ -52,7 +53,7 @@ let sierpinskiIFS1 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.0, 0.0);
 let sierpinskiIFS2 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.5, 0.0);
 let sierpinskiIFS3 = new IFS_Matrix(0.5, 0.0, 0.0, 0.5, 0.25, 0.433);
 
-let drawSierpinskiTriangle = () => {
+export function drawSierpinskiTriangle() {
     setInterval(() => {
         let randomValue = Math.floor(Math.random() * 3);
         if (randomValue == 0) {
@@ -80,13 +81,9 @@ let drawSierpinskiTriangle = () => {
 
         drawPoint(
             sierpinskiPoint[0] * WIDTH,
-            sierpinskiPoint[1] * HEIGHT,
-            'red'
+            sierpinskiPoint[1] * HEIGHT + 50,
+            'red',
+            true
         );
     }, 2);
-};
-
-let main = () => {
-    drawSierpinskiTriangle();
-};
-main();
+}
