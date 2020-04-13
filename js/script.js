@@ -4,4 +4,7 @@ let main = () => {
     drawSierpinskiTriangle();
     drawBarnsleyFern();
 };
-main();
+
+window.onload = function () {
+    main();
+};

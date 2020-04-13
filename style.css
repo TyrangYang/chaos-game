@@ -4,6 +4,19 @@
 
 body {
     background-color: #333;
+}
+
+h1 {
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    color: #fff;
+}
+.game-container {
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -14,13 +27,13 @@ body {
     margin: 10;
 }
 
-#canvas1 {
+#canvas-sierpinski-triangle {
     background-color: #f0f0f0;
     border-radius: 5px;
     margin: 10px;
 }
 
-#canvas2 {
+#canvas-barnsley-fern {
     background-color: #f0f0f0;
     border-radius: 5px;
 }
