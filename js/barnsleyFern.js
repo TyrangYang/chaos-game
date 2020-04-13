@@ -1,4 +1,4 @@
-const canvas = document.getElementById('canvas2');
+const canvas = document.getElementById('canvas-barnsley-fern');
 const ctx = canvas.getContext('2d');
 
 const WIDTH = canvas.width;
